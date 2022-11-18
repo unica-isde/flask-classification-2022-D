@@ -8,8 +8,11 @@ class Configuration:
 
     # classification
     image_folder_path = os.path.join(project_root, 'app/static/imagenet_subset')
+    # media management
     upload_folder_path = os.path.join(project_root, 'app/image_upload')
     image_upload_extensions = ['jpeg', 'jpg']
+    delete_upload_delay = 20
+
     models = ('resnet18', 'alexnet', 'vgg16', 'inception_v3',)
     # web server
     SECRET_KEY = os.environ.get('SECRET_KEY') or '9cj328s61hsd8'

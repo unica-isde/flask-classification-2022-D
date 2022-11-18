@@ -23,12 +23,14 @@ def fetch_image(image_id):
     img = Image.open(image_path)
     return img
 
+
 def fetch_uploaded_images(image_name):
     image_path = os.path.join(conf.upload_folder_path, image_name)
     if os.path.exists(image_path):
         img = Image.open(image_path)
         return img
     return None
+
 
 def get_labels():
     """Returns the labels of Imagenet dataset as a list, where
@@ -53,11 +55,11 @@ def get_model(model_id):
         raise ImportError
 
 
-def classify_image(model_id, img_id):
+def classify_image(model_id, img_id, uploaded=False):
     """Returns the top-5 classification score output from the
     model specified in model_id when it is fed with the
     image corresponding to img_id."""
-    if type(img_id) == type(str):
+    if uploaded:
         img = fetch_uploaded_images(img_id)
     else:
         img = fetch_image(img_id)
@@ -91,5 +93,4 @@ def classify_image(model_id, img_id):
     output = [(labels[idx], percentage[idx].item()) for idx in indices[0][:5]]
 
     img.close()
-    time.sleep(5)
     return output

@@ -18,8 +18,8 @@
                 <input type="file" name="file">
         </p>
         {% if form.warning %}
-            <p>
-                You have to select an image!
+            <p style="color: red">
+                {{ form.warning_text }}
             </p>
         {% endif %}
         <button type="submit" class="btn btn-dark mb-2">Submit</button>

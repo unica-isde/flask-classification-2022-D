@@ -10,4 +10,5 @@ conf = Configuration()
 class UploadForm(FlaskForm):
     model = SelectField('model', choices=conf.models, validators=[DataRequired()])
     warning = False
+    warning_text = ""
     submit = SubmitField('Submit')
