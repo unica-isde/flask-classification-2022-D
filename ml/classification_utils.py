@@ -23,6 +23,12 @@ def fetch_image(image_id):
     img = Image.open(image_path)
     return img
 
+def fetch_uploaded_images(image_name):
+    image_path = os.path.join(conf.upload_folder_path, image_name)
+    if os.path.exists(image_path):
+        img = Image.open(image_path)
+        return img
+    return None
 
 def get_labels():
     """Returns the labels of Imagenet dataset as a list, where
@@ -51,7 +57,10 @@ def classify_image(model_id, img_id):
     """Returns the top-5 classification score output from the
     model specified in model_id when it is fed with the
     image corresponding to img_id."""
-    img = fetch_image(img_id)
+    if type(img_id) == type(str):
+        img = fetch_uploaded_images(img_id)
+    else:
+        img = fetch_image(img_id)
     model = get_model(model_id)
     model.eval()
     transform = transforms.Compose((
