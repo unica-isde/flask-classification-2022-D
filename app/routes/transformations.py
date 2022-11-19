@@ -24,9 +24,9 @@ def transformations():
 
         my_custom_img = fetch_image(image_id)
         im_out = ImageEnhance.Color(my_custom_img).enhance(color)
-        # im_out = ImageEnhance.Brightness(my_custom_img).enhance(brightness)
-        # im_out = ImageEnhance.Contrast(my_custom_img).enhance(contrast)
-        # im_out = ImageEnhance.Sharpness(my_custom_img).enhance(sharpness)
+        im_out = ImageEnhance.Brightness(im_out).enhance(brightness)
+        im_out = ImageEnhance.Contrast(im_out).enhance(contrast)
+        im_out = ImageEnhance.Sharpness(im_out).enhance(sharpness)
         im_out.save(config.image_folder_path + '/' + "custom_" + image_id)
 
         # returns the image transformation output from the specified transformation
