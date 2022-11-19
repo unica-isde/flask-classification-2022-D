@@ -31,9 +31,9 @@ def validate_filename(filename):
 
 @app.route('/classifications_upload', methods=['GET', 'POST'])
 def classifications_upload():
-    """API for selecting a model and upload an image and running a
+    """API for selecting a model, upload an image and running a
     classification job. Returns the output scores from the 
-    model."""
+    model. It does the exact same thing of classification, but with an uploaded image"""
     form = UploadForm()
     if form.validate_on_submit():  # POST
         model_id = form.model.data
@@ -80,8 +80,6 @@ def classifications_upload():
         return render_template("classification_output_queue.html", uploaded=True, image_id=filename,
                                jobID=task.get_id())
 
-
-    # otherwise, it is a get request and should return the
     # image and model selector
     return render_template('classification_select_upload.html', form=form)
 
@@ -89,4 +87,3 @@ def classifications_upload():
 @app.route('/classifications_get_uploaded_<path:filename>')
 def get_uploaded_image(filename):
     return send_from_directory(config.upload_folder_path, filename)
-
