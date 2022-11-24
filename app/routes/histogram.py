@@ -3,6 +3,11 @@ from flask import render_template
 from app import app
 from app.forms.histogram_form import HistogramForm
 from config import Configuration
+from ml.classification_utils import fetch_image
+
+import matplotlib.pyplot as plt
+import numpy as np
+import imageio.v3 as iio
 
 config = Configuration()
 
@@ -12,6 +17,7 @@ def histogram():
     """API for selecting an image.
     Returns the output histogram from the image.
     """
+
     form = HistogramForm()
     if form.validate_on_submit():  # POST
         image_id = form.image.data
@@ -34,7 +40,7 @@ def histogram():
 
         # returns the image histogram output from the specified image
         # return render_template('classification_output.html', image_id=image_id, results=result_dict)
-        return render_template("histogram_output.html", image_id=image_id)
+        return render_template("histogram_output.html", image_id=image_id, histogram=my_histogram)
 
     # otherwise, it is a get request and should return the
     # image selector
