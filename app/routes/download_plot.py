@@ -14,6 +14,7 @@ app.config['SAVEPRIV'] = SAVEPRIV
 
 @app.route("/download_plot", methods=['GET', 'POST'])
 def download_plot():
+    """API for returning the plot as an image."""
     if request.method == 'POST':
         jobId = request.form.get('jobid')
         jsonFIle = classifications_id(jobId)

@@ -17,7 +17,7 @@ config = Configuration()
 
 def allowed_file(filename):
     return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in config.image_upload_extensions
+        filename.rsplit('.', 1)[1].lower() in config.image_upload_extensions
 
 
 def validate_filename(filename):
