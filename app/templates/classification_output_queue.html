@@ -34,11 +34,19 @@
 
                 <a class="btn btn-dark" href="/classifications" role="button">Back</a>
             </div>
+            <div class="row float-right m-3">
+                <form action="/download_results" method="POST" novalidate>
+                    <input type="hidden" id="jobid" name="jobid" value={{ jobID }}>
+                    <button type="submit" class="btn btn-dark m-2">Download results</button>
+                </form>
+                <form action="/download_plot" method="POST" novalidate>
+                    <input type="hidden" id="jobid" name="jobid" value={{ jobID }}>
+                    <button type="submit" class="btn btn-dark m-2">Download plot</button>
+                </form>
+
+            </div>
         </div>
-    </div>
-    <script src="{{ url_for("static", filename="poll.js") }}" id="polling" jobid={{ jobID }}></script>
+        </div>
+        <script src="{{ url_for("static", filename="poll.js") }}" id="polling" jobid={{ jobID }}></script>
 
 {% endblock %}
-
-
-
