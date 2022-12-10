@@ -53,7 +53,7 @@ def classifications_upload():
             if allowed_file(file.filename):
                 filename = secure_filename(file.filename)
                 filename = validate_filename(filename)  # avoid overwriting existing files
-                file.save(os.path.join(config.upload_folder_path, filename))  # then create job
+                file.save(os.path.join(config.upload_folder_path, filename))  # then create job (after this instruction)
             else:
                 form.warning = True
                 allowed_ext = str(config.image_upload_extensions)
@@ -84,6 +84,6 @@ def classifications_upload():
     return render_template('classification_select_upload.html', form=form)
 
 
-@app.route('/classifications_get_uploaded_<path:filename>')
+@app.route('/classifications_get_uploaded_<path:filename>')  # used to get a resource that is placed outside of static
 def get_uploaded_image(filename):
     return send_from_directory(config.upload_folder_path, filename)
